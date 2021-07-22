@@ -79,13 +79,29 @@ function coll() {
 }
 
 function draw() {
-	ctx.clearRect(0, 0, 500, 500);
-	ctx.fillStyle = "green";
+  ctx.clearRect(0, 0, 500, 500);
+  let sqrcolor = 1;
+  for (let i = 0; i < 20; i++) {
+    for (let j = 0; j < 20; j++) {
+      if (sqrcolor) {
+         ctx.fillStyle = "#a2d149";
+        sqrcolor = 0;
+      } else {
+        ctx.fillStyle = "#aad751";
+        sqrcolor = 1;
+      }
+      ctx.fillRect(i * 25, j * 25, 25, 25);
+    }
+    sqrcolor ? sqrcolor = 0 : sqrcolor = 1;
+  }
+  ctx.fillStyle = "#e7471d";
+	ctx.beginPath();
+  ctx.arc(apple[0] + 12.5, apple[1] + 12.5, 11.25, 0, 2 * Math.PI);
+  ctx.fill();
+	ctx.fillStyle = "#4573e8";
 	for (let i = 0; i < snake.length; i++) {
 		ctx.fillRect(snake[i][0], snake[i][1], 25, 25);
 	}
-	ctx.fillStyle = "red";
-	ctx.fillRect(apple[0], apple[1], 25, 25);
 }
 
 function game() {
